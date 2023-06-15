@@ -7,4 +7,9 @@
 
 using namespace std;
 
+class IADesenvolvedor {
+public:
+    bool cadastrar();
+    virtual bool executar(Matricula) = 0;
+}
 #endif // INTERFACES_H_INCLUDED
