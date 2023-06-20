@@ -2,11 +2,88 @@
 #define CONTROLADORAS_H_INCLUDED
 
 #include "Interfaces.h"
-#include "Dominios.h"
 
-#include <stdexcept>
-#include <iostream>
+class CntrAControle {
+    private:
+        Matricula matricula;
+        IAAutenticacao *cntrAAutenticacao;
+        IADesenvolvedor *cntrADesenvolvedor;
+        IATeste *cntrATeste;
+    public:
+        void executar();
+        void setCntrAAutenticacao(IAAutenticacao*);
+        void setCntrADesenvolvedor(IADesenvolvedor*);
+        void setCntrATeste(IATeste*);
+};
 
-using namespace std;
+void inline CntrAControle::setCntrAAutenticacao(IAAutenticacao* cntr) {
+    cntrAAutenticacao = cntr;
+}
+
+void inline CntrAControle::setCntrADesenvolvedor(IADesenvolvedor* cntr) {
+    cntrADesenvolvedor = cntr;
+}
+
+void inline CntrAControle::setCntrATeste(IATeste* cntr) {
+    cntrATeste = cntr;
+}
+
+class CntrIAAutenticacao: public IAAutenticacao {
+    private:
+        ISAutenticacao *cntrISAutenticacao;
+    public:
+        bool autenticar(Matricula*);
+        void setCntrISAutenticacao(ISAutenticacao*);
+};
+
+void inline CntrIAAutenticacao::setCntrISAutenticacao(ISAutenticacao*p cntrISAutenticacao) {
+    this->cntrISAutenticacao = cntrISAutenticacao;
+}
+
+class CntrIADesenvolvedor: public IADesenvolvedor {
+    private:
+        ISDesenvolvedor *cntrISDesenvolvedor;
+    public:
+        void executar(Matricula);
+        void cadastrar();
+        void setCntrISDesenvolvedor(ISDesenvolvedor*);
+};
+
+void inline CntrIADesenvolvedor::setCntrISDesenvolvedor(ISDesenvolvedor *cntrISDesenvolvedor) {
+    this->cntrISDesenvolvedor = cntrISDesenvolvedor;
+}
+
+class CntrIATeste: public IATeste {
+    private:
+        ISTeste *cntrISTeste;
+    public:
+        void executar(Matricula);
+        void setCtrISTeste(ISTeste*);
+};
+
+void inline CntrIATeste::setCtrISTeste(ISTeste* CntrISTeste) {
+    this->cntrISTeste = cntrISTeste;
+}
+
+class CntrISAutenticacao: public ISAutenticacao {
+    public:
+        bool autenticar(const Matricula&, const Senha&);
+};
+
+class CntrISDesenvolvedor: public ISDesenvolvedor {
+    public:
+        bool cadastrar(const Desenvolvedor&);
+        bool visualizar(const Desenvolvedor&);
+        bool editar(const Desenvolvedor&);
+        bool descadastrar(const Desenvolvedor&);
+};
+
+class CntrISTeste: public IATeste {
+    public:
+        bool cadastrar(const Teste&);
+        bool visualizar(const Teste&);
+        bool editar(const Teste&);
+        bool descadastrar(const Teste&);
+};
 
 #endif // CONTROLADORAS_H_INCLUDED
