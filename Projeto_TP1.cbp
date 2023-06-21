@@ -46,7 +46,16 @@
 		<Unit filename="Testes.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="acessoDB.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="main.cpp" />
+		<Unit filename="sqlite3.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="sqlite3.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Extensions>
 			<DoxyBlocks>
 				<comment_style block="0" line="0" />
